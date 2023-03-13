@@ -7,7 +7,7 @@ Add `:mimzy` to your list of dependencies in `mix.exs`:
 ```elixir
 defp deps do
   [
-    {:mimzy, "~> 1.0"}
+    {:mimzy, "~> 2.0"}
   ]
 end
 ```
