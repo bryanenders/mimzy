@@ -123,6 +123,11 @@ defmodule Mimzy do
   @type id :: any
   @type state :: any
 
+  @doc """
+  Handles a state machine event.
+
+  This function delegates to the callbacks implemented in the given `module`.
+  """
   @spec handle_event(event, id, module) :: term
   def handle_event(event, id, module) do
     case module.init(id) do
