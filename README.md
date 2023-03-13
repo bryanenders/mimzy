@@ -24,7 +24,7 @@ defmodule ButtonMachine do
     do: _id = ButtonRepo.insert(count: 0, state: :off)
 
   def handle_event(id, event),
-    do: Mimzy.handle_event(id, event, __MODULE)
+    do: Mimzy.handle_event(id, event, __MODULE__)
 
   def init(id) do
     button = ButtonRepo.get_and_lock(id)
