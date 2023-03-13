@@ -31,7 +31,7 @@ defmodule Mimzy.MixProject do
 
   defp docs,
     do: [
-      extras: ["README.md"],
+      extras: ["CHANGELOG.md", "README.md"],
       main: "Mimzy",
       source_ref: "v#{@version}",
       source_url: @source_url
