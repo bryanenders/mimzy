@@ -23,7 +23,7 @@ defmodule Mimzy do
         @impl Mimzy
         def handle_event(:create) do
           {1, [%{id: id}]} = Repo.insert_all("buttons", [[count: 0, state: "off"]], returning: [:id])
-          {:ok, id}
+          id
         end
 
         @spec handle_event(Mimzy.id(), Mimzy.event()) :: term
@@ -37,7 +37,7 @@ defmodule Mimzy do
         def init(id) do
           case Repo.one(
                  from b in button_query(id),
-                   lock: "FOR UPDATE NOWAIT",
+                   lock: "FOR UPDATE",
                    select: {b.state, b.count}
                 ) do
             {state, count} ->
@@ -94,8 +94,8 @@ defmodule Mimzy do
 
   Usage would be:
 
-      {:ok, id} = PushButton.handle_event(:create)
-      #=> {:ok, 1}
+      id = PushButton.handle_event(:create)
+      #=> 123
 
       PushButton.handle_event(id, :get_count)
       #=> 0
