@@ -2,6 +2,12 @@
 
 This is a new major release of Mimzy that improves the API.
 
+## v2.0.1 (2023-03-13)
+
+### Enhancements
+
+  * Update documentation
+
 ## v2.0.0 (2023-03-13)
 
 ### Backwards incompatible changes
