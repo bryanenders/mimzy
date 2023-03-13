@@ -41,8 +41,10 @@ defmodule ButtonMachine do
     :off
   end
 
-  def handle_event(_state, :get_count, _id, count),
-    do: count
+  def handle_event(_state, :get_count, id, count) do
+    :ok = ButtonRepo.unlock(id)
+    count
+  end
 end
 ```
 
