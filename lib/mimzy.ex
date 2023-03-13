@@ -26,9 +26,9 @@ defmodule Mimzy do
           {:ok, id}
         end
 
-        @spec handle_event(Mimzy.event(), Mimzy.id()) :: term
-        def handle_event(event, id),
-          do: Mimzy.handle_event(event, id, __MODULE__)
+        @spec handle_event(Mimzy.id(), Mimzy.event()) :: term
+        def handle_event(id, event),
+          do: Mimzy.handle_event(id, event, __MODULE__)
 
         @impl Mimzy
         def init(id) do
@@ -94,28 +94,28 @@ defmodule Mimzy do
       {:ok, id} = PushButton.handle_event(:create)
       #=> {:ok, 1}
 
-      PushButton.handle_event(:get_count, id)
+      PushButton.handle_event(id, :get_count)
       #=> 0
 
-      PushButton.handle_event(:push, id)
+      PushButton.handle_event(id, :push)
       #=> :on
 
-      PushButton.handle_event(:get_count, id)
+      PushButton.handle_event(id, :get_count)
       #=> 1
 
-      PushButton.handle_event(:push, id)
+      PushButton.handle_event(id, :push)
       #=> :off
 
-      PushButton.handle_event({:put_count, 99}, id)
+      PushButton.handle_event(id, {:put_count, 99})
       #=> :ok
 
-      PushButton.handle_event(:get_count, id)
+      PushButton.handle_event(id, :get_count)
       #=> 99
 
-      PushButton.handle_event(:delete, id)
+      PushButton.handle_event(id, :delete)
       #=> :ok
 
-      PushButton.handle_event(:push, id)
+      PushButton.handle_event(id, :push)
       #=> :error
   """
   @type data :: any
@@ -128,8 +128,8 @@ defmodule Mimzy do
 
   This function delegates to the callbacks implemented in the given `module`.
   """
-  @spec handle_event(event, id, module) :: term
-  def handle_event(event, id, module) do
+  @spec handle_event(id, event, module) :: term
+  def handle_event(id, event, module) do
     case module.init(id) do
       {:cont, state, data} ->
         module.handle_event(state, event, id, data)
