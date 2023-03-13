@@ -162,4 +162,6 @@ defmodule Mimzy do
   state to another.
   """
   @callback handle_event(state, event, id, data) :: term
+
+  @optional_callbacks handle_event: 1
 end
