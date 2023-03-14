@@ -27,11 +27,10 @@ defmodule Mimzy do
         end
 
         @spec handle_event(Mimzy.id(), Mimzy.event()) :: term
-        def handle_event(id, event),
-          do:
-            Repo.transaction(fn ->
-              Mimzy.handle_event(id, event, __MODULE__)
-            end)
+        def handle_event(id, event) do
+          {:ok, result} = Repo.transaction(fn -> Mimzy.handle_event(id, event, __MODULE__) end)
+          result
+        end
 
         @impl Mimzy
         def init(id) do
