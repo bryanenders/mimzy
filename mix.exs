@@ -15,7 +15,7 @@ defmodule Mimzy.MixProject do
       deps: deps(),
       description: "A finite-state machine library for Elixir",
       docs: docs(),
-      elixir: "~> 1.14",
+      elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       name: "Mimzy",
       package: package(),
