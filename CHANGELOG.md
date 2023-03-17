@@ -2,6 +2,12 @@
 
 This is a new major release of Mimzy that improves the API.
 
+## v2.1.0 (2023-03-17)
+
+### Enhancements
+
+  * Reduce minimum Elixir version to 1.11
+
 ## v2.0.1 (2023-03-13)
 
 ### Enhancements
